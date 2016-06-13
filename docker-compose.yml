@@ -29,8 +29,6 @@ mysql:
     MYSQL_DATABASE: 'pydio'
     MYSQL_USER: 'pydio'
     MYSQL_PASSWORD: 'CHANGEME'
-  expose:
-    - '3306'
 
 #letsencrypt:
 #  container_name: letsencrypt
