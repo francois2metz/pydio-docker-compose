@@ -1,13 +1,12 @@
 nginx:
   container_name: nginx
   build: ./nginx
-  environment: 
-    NGINX_SERVER_NAME: 'CHANGEME.com'
-    LETSENCRYPT: 'true'
+  env_file:
+    - './.env'
   volumes:
     - ./nginx/default.crt:/srv/config/fullchain.pem
     - ./nginx/default.key:/srv/config/privkey.pem
-  volumes_from: 
+  volumes_from:
     - letsencrypt
     - php
   ports:
@@ -19,38 +18,19 @@ php:
   volumes:
     - /php
     - /srv/www
-  volumes_from:
-    - mysql
-    - pydio-data
 
 mysql:
   container_name: mysql
   image: mariadb:latest
+    env_file:
+    - './.env'
   environment:
     MYSQL_ROOT_PASSWORD: 'CHANGEME'
     MYSQL_DATABASE: 'pydio'
     MYSQL_USER: 'pydio'
     MYSQL_PASSWORD: 'CHANGEME'
-  expose: 
+  expose:
     - '3306'
-  volumes_from:
-    - mysql-data
-  volumes:
-    - /run/mysqld
-
-mysql-data:
-  image: busybox
-  volumes:
-    - ./persistent/mysql:/var/lib/mysql
-
-pydio-data:
-  image: busybox
-  volumes:
-    - ./persistent/data:/pydio-data
-
-# letsencrypt:
-#   container_name: letsencrypt
-#   image: busybox
 
 letsencrypt:
   container_name: letsencrypt
