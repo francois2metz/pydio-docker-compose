@@ -7,7 +7,7 @@ nginx:
     - ./nginx/default.crt:/srv/config/fullchain.pem
     - ./nginx/default.key:/srv/config/privkey.pem
   volumes_from:
-    - letsencrypt
+#    - letsencrypt
     - php
   ports:
     - '80:80'
@@ -32,11 +32,11 @@ mysql:
   expose:
     - '3306'
 
-letsencrypt:
-  container_name: letsencrypt
-  build: ./letsencrypt
-  volumes:
-      - ./persistent/letsencrypt:/etc/letsencrypt
-      - /var/lib/letsencrypt
-      - /srv/letsencrypt-webrootauth
-  command: root certonly --email CHANGEME@gmail.com -d CHANGEME.com -d www.CHANGEME.com --renew-by-default -a webroot --webroot-path /srv/letsencrypt-webrootauth --text --agree-tos --agree-dev-preview --server https://acme-v01.api.letsencrypt.org/directory
+#letsencrypt:
+#  container_name: letsencrypt
+#  build: ./letsencrypt
+#  volumes:
+#      - ./persistent/letsencrypt:/etc/letsencrypt
+#      - /var/lib/letsencrypt
+#      - /srv/letsencrypt-webrootauth
+#  command: root certonly --email CHANGEME@gmail.com -d CHANGEME.com -d www.CHANGEME.com --renew-by-default -a webroot --webroot-path /srv/letsencrypt-webrootauth --text --agree-tos --agree-dev-preview --server https://acme-v01.api.letsencrypt.org/directory
