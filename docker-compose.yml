@@ -1,7 +1,6 @@
 version: '2'
 services:
   nginx:
-    container_name: nginx
     build: ./nginx
     env_file:
       - './.env'
@@ -22,7 +21,6 @@ services:
       - /srv/www
 
   mysql:
-    container_name: mysql
     image: mariadb:latest
     env_file:
       - './.env'
