@@ -41,7 +41,7 @@ RUN { \
 
 ###########################
 # Pydio
-ARG PYDIO_VERSION=6.2.2
+ARG PYDIO_VERSION=6.4.1
 WORKDIR /srv
 RUN wget http://downloads.sourceforge.net/project/ajaxplorer/pydio/stable-channel/${PYDIO_VERSION}/pydio-core-${PYDIO_VERSION}.tar.gz && \
     tar -zxf pydio-core-${PYDIO_VERSION}.tar.gz
